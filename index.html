@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Clair Dunne</title>
+    <title>Home | Therapy and Life Coaching | Clair Dunne </title>
     <meta name="description" content="Clair Dunne Psychotherapy & Life Coaching">
     <meta name="keywords" content="Clair Dunne, Psychotherapy, Psychotherapist, Dubai, UAE, Pyschology, Life Coaching">
     
@@ -89,9 +89,52 @@
             </p>
 
             <!-- <h4 class="section-title">Accredited member of <a href="https://iahip.org/" target="_blank">IAHIP</a></h4>
-            <h4 class="section-title">Member of <a href="https://www.emccglobal.org/" target="_blank">EMCC</a> and <a href="https://coachingfederation.org/" target="_blank">ICF</a></h4>
-     -->
-          <p><a href="blog.html" class="btn btn-primary" >Welcome Video</a></p>
+            <h4 class="section-title">Member of <a href="https://www.emccglobal.org/" target="_blank">EMCC</a> and <a href="https://coachingfederation.org/" target="_blank">ICF</a></h4> -->
+     
+          <!-- <p><a href="blog.html" class="btn btn-primary" >Welcome Video</a></p> -->
+
+          
+          <h2></h2>
+          
+          <!-- Trigger/Open The Modal -->
+          <button id="myBtn" class="btn btn-primary" >Welcome Video</button>
+          
+          <!-- The Modal -->
+          <div id="myModal" class="modal">
+          
+            <!-- Modal content -->
+              <span class="close">&times;</span>
+              <!-- <p>Some text in the Modal..</p> -->
+              <iframe id="cartoonVideo" width="500" height="350" src="https://www.youtube.com/embed/EDkTA3oewCs" frameborder="0" allowfullscreen></iframe>
+          
+          </div>
+          <script>
+            // Get the modal
+            var modal = document.getElementById("myModal");
+            
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+            
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+            
+            // When the user clicks the button, open the modal 
+            btn.onclick = function() {
+              modal.style.display = "block";
+            }
+            
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+              modal.style.display = "none";
+            }
+            
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+              if (event.target == modal) {
+                modal.style.display = "none";
+              }
+            }
+            </script>
         </div>
       </div>
     </section>
@@ -176,7 +219,7 @@
       <div class="probootstrap-text">
         <div class="probootstrap-inner probootstrap-animate">
           <h1 class="heading"></h1>
-          <h1>Life coaching, an Existential and Holistic approach.</h1>
+          <h2>Life coaching, an Existential and Holistic approach.</h2>
           <P>You may be feeling stuck in one area of your life while other areas are
             flourishing. You may have realized that you are ready for that change you have
             been thinking about for some time.
@@ -332,7 +375,6 @@
     <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
   </div>
   
-
   <script src="js/scripts.min.js"></script>
   <script src="js/main.min.js"></script>
   <script src="js/custom.js"></script>
