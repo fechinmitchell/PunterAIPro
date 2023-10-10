@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punter AI Pro</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Punter AI Pro</h1>
+
+    <form id="upload-form">
+        <input type="file" id="fileInput" accept=".xml" required>
+        <button type="submit" id="predictButton">Predict</button>
+    </form>
+
+    <div id="results"></div>
+</div>
+
+<div id="loading" style="display: none;">
+    <div class="loader"></div>
+    <p id="loadingMessage">Sending to AI system...</p>
+</div>
+
+<script>
+    const form = document.getElementById('upload-form');
+    const resultsDiv = document.getElementById('results');
+
+    document.getElementById('predictButton').addEventListener('click', function(e) {
+        e.preventDefault();
+        showLoadingMessage();
+
+        // Rest of your prediction code
+        // hideLoading(); should be called when the predictions are fetched and displayed
+    });
+
+    function showLoadingMessage() {
+        const loadingDiv = document.getElementById('loading');
+        const loadingMessage = document.getElementById('loadingMessage');
+
+        loadingDiv.style.display = 'block';
+
+        setTimeout(() => {
+            loadingMessage.textContent = 'AI Analysing Race...';
+
+            setTimeout(() => {
+                loadingMessage.textContent = 'AI Predicting Race...';
+
+                setTimeout(() => {
+                    loadingMessage.textContent = 'Retrieving AI Prediction...';
+                    // Maybe hideLoading(); here, or elsewhere depending on when your predictions finish
+                }, 8000);
+
+            }, 8000);
+
+        }, 8000);
+    }
+
+    function hideLoading() {
+        document.getElementById('loading').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
+

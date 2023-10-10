@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punter AI Pro</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Punter AI Pro</h1>
+        
+        <!-- rest of your HTML -->
+
+        <form id="upload-form">
+            <!-- rest of your HTML -->
+
+        <div id="results">
+            <div id="full-predictions-section">
+                <h2 onclick="toggleFullPredictions()">Predictions</h2>
+                <div id="individual-predictions"></div>
+            </div>
+        </div>
+
+        <div id="loading" style="display: none;">
+            <!-- rest of your HTML -->
+        </div>
+
+    </div>
+
+<script>
+    // ... rest of your JavaScript ...
+
+    form.addEventListener('submit', async (e) => {
+        // ... rest of your JavaScript ...
+
+        const individualPredictionsDiv = document.getElementById('individual-predictions');
+
+        individualPredictionsDiv.innerHTML = '';
+        predictions.forEach((prediction, index) => {
+            const predictionId = `prediction-${index}`;
+            individualPredictionsDiv.innerHTML += `
+                <div class="prediction-section" id="${predictionId}">
+                    <h3 onclick="togglePrediction('${predictionId}')">${prediction.race_name} (ID: ${prediction.race_id})</h3>
+                    <div class="prediction-content">
+                        <p>${prediction.prediction}</p>
+                    </div>
+                </div>
+            `;
+        });
+
+        // ... rest of your JavaScript ...
+    });
+
+    function toggleFullPredictions() {
+        const individualPredictionsDiv = document.getElementById('individual-predictions');
+        individualPredictionsDiv.style.display = individualPredictionsDiv.style.display === 'none' ? '' : 'none';
+    }
+
+    // ... rest of your JavaScript ...
+
+</script>
+
+</body>
+</html>
+

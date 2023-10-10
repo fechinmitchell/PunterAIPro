@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punter AI Pro</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Punter AI Pro</h1>
+        
+        <div class="intro-section">
+            <p>This tool provides AI-based predictions for your horse races. To get started, simply:</p>
+            <ol>
+                <li>Upload your XML file containing race data.</li>
+                <li>Click the "Predict" button.</li>
+                <li>Wait for the AI to analyze and provide predictions.</li>
+            </ol>
+        </div>
+
+        <form id="upload-form">
+            <input type="file" id="fileInput" accept=".xml" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        <div id="results"></div>
+
+        <div id="loading" style="display: none;">
+            <div class="loader"></div>
+            <p id="loadingMessage">Sending to AI system...</p>
+        </div>
+
+    </div>
+
+<script>
+    const form = document.getElementById('upload-form');
+    const resultsDiv = document.getElementById('results');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const fileInput = document.getElementById('fileInput');
+        
+        if (fileInput.files.length === 0) {
+            fileInput.style.borderColor = "red";
+            alert("Please select a file before predicting.");
+            return;
+        } else {
+            fileInput.style.borderColor = ""; // Reset the border color
+        }
+
+        showLoadingMessage();
+
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+
+        const response = await fetch('/api/predict', {
+            method: 'POST',
+            body: formData
+        });
+
+        const predictions = await response.json();
+
+        resultsDiv.innerHTML = '';
+        predictions.forEach(prediction => {
+            resultsDiv.innerHTML += `<h3>${prediction.race_name} (ID: ${prediction.race_id})</h3>
+                                     <p>${prediction.prediction}</p>`;
+        });
+
+        hideLoading();
+    });
+
+    function showLoadingMessage() {
+        const loadingDiv = document.getElementById('loading');
+        const loadingMessage = document.getElementById('loadingMessage');
+
+        loadingDiv.style.display = 'block';
+
+        setTimeout(() => {
+            loadingMessage.textContent = 'AI Analysing Race...';
+            setTimeout(() => {
+                loadingMessage.textContent = 'AI Predicting Race...';
+                setTimeout(() => {
+                    loadingMessage.textContent = 'Retrieving AI Prediction...';
+                }, 2000);
+            }, 2000);
+        }, 2000);
+    }
+
+    function hideLoading() {
+        document.getElementById('loading').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punter AI Pro</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Punter AI Pro</h1>
+
+    <form id="upload-form">
+        <input type="file" id="fileInput" accept=".xml" required>
+        <button type="submit">Predict</button>
+    </form>
+
+    <!-- Add the loading spinner and message here -->
+    <div id="loading" style="display: none;">
+        <div class="loader"></div>
+        <p id="loadingMessage">Sending to AI system...</p>
+    </div>
+
+    <div id="results"></div>
+</div>
+
+<script>
+    const form = document.getElementById('upload-form');
+    const resultsDiv = document.getElementById('results');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const fileInput = document.getElementById('fileInput');
+        if (fileInput.files.length === 0) return;
+
+        // Show the loading spinner when the form is submitted
+        document.getElementById('loading').style.display = 'block';
+
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+
+        const response = await fetch('/api/predict', {
+            method: 'POST',
+            body: formData
+        });
+
+        const predictions = await response.json();
+
+        // Hide the loading spinner after getting the results
+        document.getElementById('loading').style.display = 'none';
+
+        resultsDiv.innerHTML = '';
+        predictions.forEach(prediction => {
+            resultsDiv.innerHTML += `<h3>${prediction.race_name} (ID: ${prediction.race_id})</h3>
+                                     <p>${prediction.prediction}</p>`;
+        });
+    });
+</script>
+
+</body>
+</html>
+
